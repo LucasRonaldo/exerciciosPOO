@@ -2,22 +2,23 @@ class Cachorro {
     nome: string;
     raca: string;
     idade: number;
-    
-    constructor(nome:string, raca:string, idade:number){
+
+    constructor(nome: string, raca: string, idade: number) {
         this.nome = nome;
         this.raca = raca;
-        this.idade = idade  ;  }
-
-    apresentar(){
-        return "oi, eu sou "+ this.nome +"um " + this.raca +"de " + this.idade + " anos";
+        this.idade = idade;
     }
-    apresentarPara(Humano: string){
-        return "ola"+ Humano + ", meu nome é " + this.nome +" sou um " + this.raca +" de " + this.idade + " anos";
+
+    apresentar() {
+        return "oi, eu sou " + this.nome + "um " + this.raca + "de " + this.idade + " anos";
+    }
+    apresentarPara(Humano: string) {
+        return "ola" + Humano + ", meu nome é " + this.nome + " sou um " + this.raca + " de " + this.idade + " anos";
     }
 }
 let lucas = new Cachorro("Lucas", "rex", 16);
-let rex = new Cachorro("Rex ", "labrador " , 3 );
-let thor = new Cachorro("Thor ", "bullfog " , 2 );
+let rex = new Cachorro("Rex ", "labrador ", 3);
+let thor = new Cachorro("Thor ", "bullfog ", 2);
 
 console.log(rex.nome);
 

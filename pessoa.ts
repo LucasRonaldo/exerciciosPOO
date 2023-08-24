@@ -19,14 +19,14 @@ class Pessoa {
         return "Olá meu nome é " + this.nome + " e tenho " + this.idade + " anos " + msgHabilitação + ".";
     }
 
-    comidasFavoritas(){
+    comidasFavoritas() {
         console.log("Minha(s) comidas(s) favorita(s)");
-        for(let i =0; i < this.comidas.length; i++){
+        for (let i = 0; i < this.comidas.length; i++) {
             console.log(this.comidas[i]);
         }
     }
 
-   
+
 
 
 
