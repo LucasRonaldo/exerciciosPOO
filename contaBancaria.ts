@@ -1,6 +1,6 @@
 class MinhaConta {
-    titular: string;
-    saldo: number;
+    private titular: string;
+    private saldo: number;
 
 
     constructor(titular: string, saldo: number) {
