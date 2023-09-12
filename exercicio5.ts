@@ -24,10 +24,10 @@ class Agenda {
 
     vizualizar() {
         if (this.eventos.length > 0) {
-            for (let i = 0; i < this.eventos.length; i++) {                     
-                console.log("Evento: " + this.eventos[i].nome + '\nEstá marcado no dia: ' 
-                + this.eventos[i].data + " as " + this.eventos[i].horas + "horas");
-            }
+                for (let i = 0; i < this.eventos.length; i++) {                     
+                    console.log("Evento: " + this.eventos[i].nome + '\nEstá marcado no dia: ' 
+                    + this.eventos[i].data + " as " + this.eventos[i].horas + "horas");
+                }
         }
 
         else {

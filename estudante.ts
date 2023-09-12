@@ -1,4 +1,4 @@
-class Estudante {
+    class Estudante {
 
     nome: string;
     idade: number;
@@ -14,9 +14,9 @@ class Estudante {
         let soma = 0;
         let media = 0;
 
-        for (let i = 0; i < this.notas.length; i++) {
-            soma = soma + this.notas[i];
-        }
+            for (let i = 0; i < this.notas.length; i++) {
+                soma = soma + this.notas[i];
+            }
         media = soma / this.notas.length
         if (media >= 7) {
             return "Parabéns, " + this.nome + "!" + " Sua média é " + media + " e você está aprovado(a)."
