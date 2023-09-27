@@ -5,40 +5,67 @@ class ContaBancaria {
         this.saldoInicial = saldoInicial;
         this.titular = titular;
     }
-}
-class ContaCorrente extends ContaBancaria {
-    constructor() {
-        super("um", 4000, "Lucas");
-        this.limiteChequeEspecial = 0;
-    }
-    chequeEspecial(limiteChequeEspecial) {
-        this.limiteChequeEspecial = limiteChequeEspecial;
-        console.log("voçê possui R$" + this.limiteChequeEspecial + " de limite no cheque especial");
-    }
     depositar(valor) {
-        let saldoTotal = this.limiteChequeEspecial + this.saldoInicial;
-        saldoTotal = this.saldoInicial + valor;
-        console.log("Usuario: " + this.titular + " fez um deposito de " + valor + ",00. Saldo atual é de : R$ " + saldoTotal + ",00\n  OBS: " +
-            "Cheque Especial: R$: " + this.limiteChequeEspecial + "& Saldo: " + this.saldoInicial);
-    }
-    sacar(valor) {
-        let saldoTotal = this.saldoInicial + this.limiteChequeEspecial;
-        if (saldoTotal < valor) {
-            console.log("Saldo indisponivel para saque");
+        if (valor > 0) {
+            this.saldoInicial += valor;
+            console.log("Depósito de R$$" + valor + "realizado com sucesso.");
         }
         else {
-            saldoTotal = saldoTotal - valor;
-            console.log("Saque de RS:" + valor + ",00 realizado com sucesso. Saldo atual é de : R$ " + (saldoTotal));
+            console.log("O valor do depósito deve ser maior que zero.");
         }
     }
-    consultaSaldo() {
-        let saldoTotal = this.saldoInicial + this.limiteChequeEspecial;
-        return saldoTotal;
+    sacar(valor) {
+        if (valor > 0 && this.saldoInicial >= valor) {
+            this.saldoInicial -= valor;
+            console.log("Saque de R$$" + valor + "realizado com sucesso.");
+        }
+        else {
+            console.log("Saldo insuficiente ou valor de saque inválido.");
+        }
+    }
+    consultarSaldo() {
+        return this.saldoInicial;
     }
 }
-const contaCorrente = new ContaCorrente();
-console.log(contaCorrente.consultaSaldo());
-console.log(contaCorrente.chequeEspecial(1000));
-console.log(contaCorrente.consultaSaldo());
-console.log(contaCorrente.sacar(1000));
-console.log(contaCorrente.depositar(500));
+class ContaCorrente extends ContaBancaria {
+    constructor(numeroConta, saldoInicial, titular, limiteChequeEspecial) {
+        super(numeroConta, saldoInicial, titular);
+        this.limiteChequeEspecial = limiteChequeEspecial;
+    }
+    sacar(valor) {
+        if (valor > 0 && (this.saldoInicial + this.limiteChequeEspecial) >= valor) {
+            this.saldoInicial -= valor;
+            console.log("Saque de R$$" + valor + " realizado com sucesso.");
+        }
+        else {
+            console.log("Saldo insuficiente ou valor de saque inválido.");
+        }
+    }
+}
+class ContaPoupanca extends ContaBancaria {
+    calcularRendimentoAnual(taxa) {
+        const rendimentoAnual = this.saldoInicial * (taxa / 100);
+        return rendimentoAnual;
+    }
+}
+class ContaInvestimento extends ContaBancaria {
+    investir(valor, prazoMeses, taxaJuros) {
+        if (valor > 0 && prazoMeses > 0 && taxaJuros > 0) {
+            const rendimento = (valor * taxaJuros * prazoMeses) / 12 / 100;
+            this.saldoInicial += rendimento;
+            console.log("Investimento de R$$" + valor + "realizado com sucesso.");
+        }
+        else {
+            console.log("Valores de investimento, prazo ou taxa de juros inválidos.");
+        }
+    }
+}
+const contaCorrente = new ContaCorrente("12345-6", 1000, "João", 500);
+contaCorrente.depositar(500);
+contaCorrente.sacar(1200);
+console.log("Saldo da Conta Corrente: R$$" + contaCorrente.consultarSaldo());
+const contaPoupanca = new ContaPoupanca("98765-4", 5000, "Maria");
+console.log("Rendimento Anual da Conta Poupança: R$$" + contaPoupanca.calcularRendimentoAnual(3));
+const contaInvestimento = new ContaInvestimento("54321-0", 20000, "Carlos");
+contaInvestimento.investir(10000, 12, 5);
+console.log("Saldo da Conta de Investimento: R$$" + contaInvestimento.consultarSaldo());
